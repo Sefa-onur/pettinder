@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1040208130293",
+    "project_id": "pettinder-df412",
+    "storage_bucket": "pettinder-df412.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040208130293:android:e67e8109c3577be5bf15bc",
+        "android_client_info": {
+          "package_name": "com.pettinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040208130293-m9f9v3l8g9laa1tunbtfudvaikvc868q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFgFl2WhFaRUOGerqxsDfHu23slL7Rc-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040208130293-m9f9v3l8g9laa1tunbtfudvaikvc868q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
