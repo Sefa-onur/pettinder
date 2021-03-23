@@ -63,7 +63,7 @@ const Tab5 = ({ navigation }) => {
                         </ImageBackground>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.Button} >
+                <TouchableOpacity style={styles.Button} onPress = {() => navigation.navigate('AddPet') } >
                     <Text style={{ fontWeight: 'bold' }} >
                         PET EKLE
                     </Text>

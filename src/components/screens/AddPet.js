@@ -1,0 +1,118 @@
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons/Feather';
+import * as İmagepicker from 'react-native-image-picker';
+import { TextInput } from 'react-native-gesture-handler';
+
+const AddPet = ({ navigation }) => {
+
+    const [response, setresponse] = useState();
+    const [petname, setpetname] = useState();
+    const [type,settype] = useState();
+    const [gender,setgender] = useState();
+    const [age,setage] = useState();
+    const [weigth,setweigth] = useState();
+    const [size,setsize] = useState();
+
+    const openlibrary = () => {
+        İmagepicker.launchImageLibrary({
+            mediaType: 'photo',
+            maxHeight: 150,
+            maxWidth: 150
+        },
+            ((res) => {
+                setresponse(res)
+            })
+        )
+    }
+    return (
+        <View style={{ flex: 1, backgroundColor: '#EFEFEF' }} >
+            <View style={styles.Header} >
+                <View style={styles.HeaderIcon} >
+                    <TouchableOpacity onPress={() => navigation.goBack()} >
+                        <Icon name='chevron-back' size={30} color='#A4A9AD' />
+                    </TouchableOpacity>
+                </View>
+                <Text style={styles.HeaderText} >
+                    PET EKLE
+                </Text>
+            </View>
+            <View style={styles.Body} >
+                <TouchableOpacity onPress={() => openlibrary()} >
+                    <View style={styles.FotoView} >
+                        <Feather name='camera' size={70} color='gray' />
+                    </View>
+                </TouchableOpacity>
+            </View>
+            <View style = {{marginTop:10}} >
+                <TextInput
+                    placeholder='Petin Adı'
+                    value={petname}
+                    onChangeText={(text) => setpetname(text)}
+                    style={styles.TextInputs}
+                />
+                <TextInput
+                    placeholder='Türü'
+                    value={type}
+                    onChangeText={(text) => settype(text)}
+                    style={styles.TextInputs}
+                />
+                <TextInput
+                    placeholder='Petin Adı'
+                    value={gender}
+                    onChangeText={(text) => setgender(text)}
+                    style={styles.TextInputs}
+                />
+            </View>
+        </View>
+    )
+}
+
+export default AddPet;
+
+const styles = StyleSheet.create({
+    Header: {
+        marginTop: 10,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    HeaderIcon: {
+        height: 41,
+        width: 41,
+        borderRadius: 50,
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 31
+    },
+    HeaderText: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        marginLeft: 70
+    },
+    Body: {
+        alignItems: 'center'
+    },
+    FotoView: {
+        height: 150,
+        width: 150,
+        borderWidth: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        borderColor: '#CECECE',
+        borderRadius: 10,
+        marginTop: 30,
+        elevation: 5
+    },
+    TextInputs:{
+        borderWidth:1,
+        marginVertical:5,
+        borderRadius:10,
+        backgroundColor:'white',
+        elevation:5,
+        borderColor:'#CECECE',
+        marginHorizontal:32
+    }
+})

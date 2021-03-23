@@ -8,6 +8,7 @@ import Pet from './src/components/screens/Pet';
 import Welcome from './src/components/screens/Welcome';
 import BottomTabNavigator from './src/components/TabNavigation/BottomTabNavigator';
 import Settings from './src/components/screens/Settings';
+import AddPet from './src/components/screens/AddPet';
 
 const Stack = createStackNavigator();
 
@@ -21,7 +22,8 @@ const App = () => {
         <Stack.Screen name = 'KisiselBilgiler' component = {KisiselBilgiler} />
         <Stack.Screen name = 'Pet' component = {Pet} />
         <Stack.Screen name = 'Welcome' component = {Welcome} />
-        <Stack.Screen name = 'Settings' component = {Settings} />                 
+        <Stack.Screen name = 'Settings' component = {Settings} />
+        <Stack.Screen name = 'AddPet' component = {AddPet} />                 
       </Stack.Navigator>
     </NavigationContainer>
   )
