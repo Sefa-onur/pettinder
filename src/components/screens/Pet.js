@@ -146,18 +146,21 @@ const Pet = ({ navigation }) => {
                     onChangeText={(text) => setage(text)}
                     value={age}
                     style={styles.InputAge}
+                    keyboardType ='numeric'
                 />
                 <TextInput
                     placeholder='Kilo'
                     onChangeText={(text) => setweight(text)}
                     value={weight}
                     style={styles.InputWeight}
+                    keyboardType ='numeric'
                 />
                 <TextInput
                     placeholder='Boy'
                     onChangeText={(text) => setsize(text)}
                     value={size}
                     style={styles.InputSize}
+                    keyboardType ='numeric'
                 />
             </View>
             <View style={{ marginTop: 20, elevation: 5 }} >

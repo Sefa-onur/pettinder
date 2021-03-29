@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import * as İmagepicker from 'react-native-image-picker';
-import { TextInput } from 'react-native-gesture-handler';
 
 const AddPet = ({ navigation }) => {
 
@@ -59,10 +58,33 @@ const AddPet = ({ navigation }) => {
                     style={styles.TextInputs}
                 />
                 <TextInput
-                    placeholder='Petin Adı'
+                    placeholder='Cinsiyeti'
                     value={gender}
                     onChangeText={(text) => setgender(text)}
                     style={styles.TextInputs}
+                />
+            </View>
+            <View style = {{flexDirection:'row',marginTop:5}} >
+                <TextInput
+                    placeholder='Yaş'
+                    onChangeText={(text) => setage(text) }
+                    value = {age}
+                    style = {styles.InputAge}
+                    keyboardType = 'numeric'
+                />
+                <TextInput
+                    placeholder='Kilo'
+                    onChangeText={(text) => setsize(text) }
+                    value = {size}
+                    style = {styles.InputSize}
+                    keyboardType = 'numeric'
+                />
+                <TextInput
+                    placeholder='Boy'
+                    onChangeText={(text) => setweigth(text) }
+                    value = {weigth}
+                    style = {styles.InputWeigth}
+                    keyboardType = 'numeric'
                 />
             </View>
         </View>
@@ -114,5 +136,32 @@ const styles = StyleSheet.create({
         elevation:5,
         borderColor:'#CECECE',
         marginHorizontal:32
+    },
+    InputAge:{
+        flex:1,
+        borderWidth:1,
+        marginLeft:32,
+        backgroundColor:'white',
+        borderRadius:10,
+        borderColor:'#CECECE',
+        elevation:5
+    },
+    InputSize:{
+        flex:1,
+        borderWidth:1,
+        backgroundColor:'white',
+        borderRadius:10,
+        marginHorizontal:10,
+        borderColor:'#CECECE',
+        elevation:5
+    },
+    InputWeigth:{
+        flex:1,
+        borderWidth:1,
+        marginRight:32,
+        backgroundColor:'white',
+        borderRadius:10,
+        borderColor:'#CECECE',
+        elevation:5
     }
 })
