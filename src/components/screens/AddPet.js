@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import * as İmagepicker from 'react-native-image-picker';
+import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
+import storage from '@react-native-firebase/storage';
+import Button from '../helpercomponents/Button2';
 
 const AddPet = ({ navigation }) => {
 
@@ -13,6 +17,7 @@ const AddPet = ({ navigation }) => {
     const [age,setage] = useState();
     const [weigth,setweigth] = useState();
     const [size,setsize] = useState();
+    const [loading,setloading] = useState(false);
 
     const openlibrary = () => {
         İmagepicker.launchImageLibrary({
@@ -24,6 +29,60 @@ const AddPet = ({ navigation }) => {
                 setresponse(res)
             })
         )
+    }
+
+    const spinnerFunc = () => {
+        if(loading == false){
+            return(
+               <Button Text = 'KAYDET' onPress = { () =>  addPetFunc()} />
+            )            
+        }else {
+            return(
+                <View style = {styles.Spinner} >
+                    <ActivityIndicator color = 'white' size = 'large' />
+                </View>
+            )
+        }
+    }
+
+    const userid = auth().currentUser.uid;
+
+    const addPetFunc = () => {
+        if(!response||!petname||!gender||!type||!age||!weigth||!size){
+            alert('Bilgileri Giriniz')
+        }else{
+            setloading(true)
+            const ref = storage().ref('users'+userid+'jpg')
+            ref.putFile(response.uri)
+            .then((ress) => {
+                if(ress.state == 'success'){
+                   ref.getDownloadURL()
+                   .then(url => {
+                       database().ref('/users/'+userid).child('pets').push({
+                        petname: petname,
+                        type: type,
+                        gender: gender,
+                        age: age,
+                        weight: weigth,
+                        size: size,
+                        photoUrl: url
+                       })
+                   })
+                   .then(() => {
+                       setloading(false)
+                       navigation.goBack()
+                   })
+                }
+                else{
+                    setloading(false)
+                    alert('Bir Hata Oluştu')
+                }
+            })
+            .catch(() => {
+                alert('Bir Hata Oluştu')
+                setloading(false)
+            })
+        }
     }
     return (
         <View style={{ flex: 1, backgroundColor: '#EFEFEF' }} >
@@ -86,6 +145,9 @@ const AddPet = ({ navigation }) => {
                     style = {styles.InputWeigth}
                     keyboardType = 'numeric'
                 />
+            </View>
+            <View style = {{marginTop:20}} >
+                 {spinnerFunc()}
             </View>
         </View>
     )
@@ -163,5 +225,13 @@ const styles = StyleSheet.create({
         borderRadius:10,
         borderColor:'#CECECE',
         elevation:5
+    },
+    Spinner:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 44,
+        backgroundColor: '#F27059',
+        borderRadius: 20,
+        elevation: 5
     }
 })

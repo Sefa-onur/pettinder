@@ -36,7 +36,7 @@ const Tab5 = ({ navigation }) => {
                         </Text>
                     </View>
                     <View style={{ flex: 1, alignItems: 'flex-end' }} >
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress = {() => navigation.navigate('SingOut') } >
                             <View style={styles.IconRigth}>
                                 <SimpleLine name='settings' color='gray' size={25} />
                             </View>

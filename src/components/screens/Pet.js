@@ -97,7 +97,7 @@ const Pet = ({ navigation }) => {
                 })
                 .catch(() => {
                     setloading(false)
-                    alert('hataa')
+                    alert('Bir Hata Oluştu')
                 })
         }
     }
